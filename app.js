@@ -1,13 +1,14 @@
-'use strict;'
+// 'use strict;'
 
 // Create a constructor function that creates an object associated with each product, and has the following properties:
 
 let allProducts = [];
 let maxClicks = 25;
 // this array is going to hold
-let productNames = ['bag','banana','bathroom','boots'];
+let productNames = ['bag','banana','bathroom'];
 let totalClicks = 0;
 let timesClicked = [];
+
 
 // this array holds number of times clicked
 
@@ -27,7 +28,8 @@ function Product(name,path){
     this.trackClicks
     allProducts.push(this);
     }
-    
+   
+    // }
     // Product.trackClicks = function(){
     //     console.log('you clicked image' + this.name);
     //     }
@@ -50,7 +52,7 @@ let resultsButton = document.getElementById('results-button')
 
 function constructImages(){
 
-
+// displays info in the console when clicked
     let bag = new Product('bag','./assets/bag.jpg');
     let banana = new Product('banana','./assets/banana.jpg');
     let bathroom = new Product('bathroom','./assets/bathroom.jpg');
@@ -75,18 +77,18 @@ function constructImages(){
    
     // trackClicks(banana)
     img_one.addEventListener('click',function(){
-    trackClicks(bag)
-    timeShown(bag)
+        trackClicks(bag) 
+          timeShown(bag)
 
     });
     img_two.addEventListener('click',function(){
-        trackClicks(banana);
-        timesShown(banana);
+        trackClicks(banana) 
+        //  timesShown(banana)
     });
     
     img_three.addEventListener('click',function(){
-        trackClicks(bathroom);
-        timeShown(bathroom);
+        trackClicks(bathroom)
+        timeShown(bathroom)
     
     });
 
@@ -103,6 +105,9 @@ function constructImages(){
     function displayRandomImage(){
 
        // this function needs to call the randomizer algorithm
+       var myPix = new Array("bag.jpg", "chair.jpg", "pen.jpg");
+       var randomNum = Math.floor(Math.random() * myPix.length);
+       document.getElementById("bag.jpg").src = myPix[randomNum];
     }
     
     
@@ -121,11 +126,12 @@ product.timesClicked++
 console.log(product.timesClicked)
 }
 else{
-     timesClicked.push(bag.timesClicked, banana.timesClicked, bathroom.timesClicked, boots.timesClicked);
+    timesClicked.push(bag.timesClicked) 
+    timesClicked.push(banana.timesClicked) 
+    timesClicked.push(bathroom.timesClicked);
     alert('too many clicks')
 }
 }
-
 // make a function that keeps track of how many times an image was shown
 function timeShown(product){
 // we need to pass an object to this function
@@ -170,7 +176,7 @@ const myChart = new Chart(ctx, {
       labels: productNames, // pass array to our label data! 
       datasets: [{
           label: '# of Clicks',
-          data: totalClicks, // Has to match the label data!!
+          data: timesClicked, // Has to match the label data!!
           backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -199,9 +205,29 @@ const myChart = new Chart(ctx, {
   }
 });
 
+let image_one = {
+    productNames:'bag',
+    timesClicked: [],
 
 
+}
 
+timesClicked.push(image_one)
+
+for(let i = 0; i < timesClicked.length; i++){
+localStorage.setItem(`Clicks${i}`, timesClicked[i]);
+}
+ // let banana = {
+    //        clicks: this.timesClicked = 0,
+    //        timeSeen: this.timeShown,
+
+
+    // }
+
+    // // for(let i = 0; i < totalClicks.length; i++) {
+    // //     let product_string = JSON.stringify(totalClicks[i]);
+    // //     localStorage.setItem(`clicks${i}`, totalClicks [i].clicks);
+    // //     localStorage.setItem(`bio${i}`, totalClicks[i].this);
 displayResults(allProducts)
 
 constructImages()
