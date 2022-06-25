@@ -228,6 +228,50 @@ localStorage.setItem(`Clicks${i}`, timesClicked[i]);
     // //     let product_string = JSON.stringify(totalClicks[i]);
     // //     localStorage.setItem(`clicks${i}`, totalClicks [i].clicks);
     // //     localStorage.setItem(`bio${i}`, totalClicks[i].this);
+
+
+    let image01 = {
+        imageName: 'bag',
+        maxClick: 25 ,
+    }
+
+    let image02 = {
+        imageName: 'banana',
+        maxClick: 25 ,
+    }
+
+    let image03 = {
+        imageName: 'bathroom',
+        maxClick: 25 ,
+    }
+
+     let all_images = [
+          {
+            imageName: 'bag',
+            maxClick: 25 ,
+          },
+          {
+            imageName: 'banana',
+            maxClick: 25 ,
+          },
+          {
+            imageName: 'bathroom',
+            maxClick: 25 ,
+          },
+     ]
+
+    //  let all_images = [];
+
+     all_images.push(image01,image02,image03)
+
+for(let i = 0; i < all_images.length; i++) {
+    let image_string = JSON.stringify(all_images[i]);
+    localStorage.setItem(`Image${i}`, all_images[i].imageName);
+    localStorage.setItem(`Max Clicks${i}`, all_images[i].maxClick);
+}
+
+
+
 displayResults(allProducts)
 
 constructImages()
